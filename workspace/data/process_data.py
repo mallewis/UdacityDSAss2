@@ -5,17 +5,17 @@ import sys
 
 
 def load_data(messages_filepath, categories_filepath):
-    
-   '''
-   Input: Messages & categories csv files
+    '''
+    Input: Messages & categories csv files
    
-   Process:
-   -Read both csvs as pandas dataframes
-   -Merge/join both dfs on ID column
+    Process:
+    -Read both csvs as pandas dataframes
+    -Merge/join both dfs on ID column
    
-   Output: Merged dataframes
-   '''
+    Output: Merged dataframes
+    '''
     # read csvs as pandas dfs
+    
     messages = pd.read_csv(messages_filepath)
     categories =  pd.read_csv(categories_filepath)
     
@@ -58,6 +58,8 @@ def clean_data(df):
 
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
+    
+    categories = categories.loc[categories['related'] != 2]
         
     # drop the original categories column from `df`
     del df['categories']
